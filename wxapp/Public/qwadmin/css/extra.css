@@ -1,0 +1,101 @@
+/*html {*/
+    /*min-height: 100%;*/
+    /*position: relative;*/
+/*}*/
+/*body {*/
+    /*background-color: #e4e6e9;*/
+    /*min-height: 100%;*/
+    /*padding-bottom: 0;*/
+    /*font-family: "微软雅黑 regular",'SimSun','Open Sans';*/
+    /*font-size: 13px;*/
+    /*color: #393939;*/
+    /*line-height: 1.5;*/
+/*}*/
+@font-face {
+    font-family: 'Glyphicons Halflings';
+    src: url(../fonts/glyphicons-halflings-regular.eot);
+    src: url(../fonts/glyphicons-halflings-regular.eot?#iefix) format('embedded-opentype'), url(../../fonts/glyphicons-halflings-regular.woff2) format('woff2'), url(../fonts/glyphicons-halflings-regular.woff) format('woff'), url(../fonts/glyphicons-halflings-regular.ttf) format('truetype'), url(../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular) format('svg')
+}
+.total_user{
+    background:transparent url('images/dev_info/user.png') no-repeat;
+    height:112px;
+    width:84px;
+    float: left;
+    margin-left:20px;
+}
+.data_text{
+    height:112px;
+    width:200px;
+    float: left;
+    text-align:center;
+    font-size: 18px;
+    box-shadow: 3px 3px #F1F1F1;
+
+}
+.data_text_title{
+    font-family: 'Glyphicons Halflings';
+    color:#57BEDF;
+}
+.data_text_num{
+    font-size: 30px;
+}
+
+.total_pos{
+    background:transparent url('images/dev_info/pos.png') no-repeat;
+    height:112px;
+    width:84px;
+    float: left;
+    margin-left:20px;
+}
+.data_text_title2{
+    color:#6EC8BF;
+}
+.total_svip{
+    background:transparent url('images/dev_info/svip.png') no-repeat;
+    height:112px;
+    width:84px;
+    float: left;
+    margin-left:20px;
+}
+.data_text_title3{
+    color:#FF8861;
+}
+.total_juror{
+    background:transparent url('images/dev_info/juror.png') no-repeat;
+    height:112px;
+    width:84px;
+    float: left;
+    margin-left:20px;
+}
+.data_text_title4{
+    color:#B299DD;
+}
+
+.total_pos_active{
+    background:transparent url('images/dev_info/pos_active.png') no-repeat;
+    height:112px;
+    width:84px;
+    float: left;
+    margin-left:20px;
+}
+.total_trade_amount{
+    background:transparent url('images/dev_info/trade_amount.png') no-repeat;
+    height:112px;
+    width:84px;
+    float: left;
+    margin-left:20px;
+}
+.total_rich{
+    background:transparent url('images/dev_info/rich.png') no-repeat;
+    height:112px;
+    width:84px;
+    float: left;
+    margin-left:20px;
+}
+.total_juror_price{
+    background:transparent url('images/dev_info/juror_price.png') no-repeat;
+    height:112px;
+    width:84px;
+    float: left;
+    margin-left:20px;
+}

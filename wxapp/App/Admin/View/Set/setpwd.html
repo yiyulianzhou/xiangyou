@@ -1,0 +1,96 @@
+<include file="Public/head"/>
+<body class="no-skin">
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('main-container', 'fixed')
+        } catch (e) {
+        }
+    </script>
+    <div class="main-content">
+        <div class="main-content-inner">
+            <!-- /section:basics/content.breadcrumbs -->
+            <div class="page-content">
+                <!-- /section:settings.box -->
+                <div class="space-4"></div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- PAGE CONTENT BEGINS -->
+                        <form class="form-horizontal" role="form" action="{:U('updatepwd')}" method="post">
+
+                            <div class="space-4"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right" for="form-field-2"> 手机号 </label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="phone" placeholder="手机号"
+                                           class="col-xs-10 col-sm-5" value="{$extagent['phone']}" readonly>
+                                    <span class="help-inline col-xs-12 col-sm-7">
+                                                <span class="middle"></span>
+                                            </span>
+                                </div>
+                            </div>
+                            <div class="space-4"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right" for="form-field-2"> 用户姓名 </label>
+                                <div class="col-sm-8">
+                                <?php if(isset($user['parent_id'])): ?>
+                                    <input type="text" name="name" placeholder="用户姓名"
+                                           class="col-xs-10 col-sm-5" value="{$extagent['name']}" readonly>
+                                <?php else: ?>
+                                    <input type="text" name="name" placeholder="用户姓名"
+                                           class="col-xs-10 col-sm-5" value="{$extagent['realname']}" readonly>
+                                <?php endif; ?>
+                                    <span class="help-inline col-xs-12 col-sm-7">
+                                        <span class="middle"></span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="space-4"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right" for="form-field-2"> 修改密码 </label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="password" id="password" placeholder="用户密码"
+                                           class="col-xs-10 col-sm-5" value="">
+                                    <span class="help-inline col-xs-12 col-sm-7">
+                                                <span class="middle">必填</span>
+                                            </span>
+                                </div>
+                            </div>
+                            <div class="space-4"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label no-padding-right" for="form-field-2"> 确认密码 </label>
+                                <div class="col-sm-8">
+                                    <input type="text" name="repassword" id="repassword" placeholder="用户密码"
+                                           class="col-xs-10 col-sm-5" value="">
+                                    <span class="help-inline col-xs-12 col-sm-7">
+                                                <span class="middle">必填</span>
+                                            </span>
+                                </div>
+                            </div>
+                            <input type="hidden" name='id' value="{$extagent['id']}">
+                            <div class="space-4"></div>
+                            <div class="col-md-offset-2 col-md-9">
+                                <button class="btn btn-info" type="submit">
+                                    <i class="icon-ok bigger-110"></i>
+                                    提交
+                                </button>
+
+                                &nbsp; &nbsp; &nbsp;
+                                <button class="btn" type="reset" onclick="history.go(-1)">
+                                    <i class="icon-undo bigger-110"></i>
+                                    返回
+                                </button>
+                            </div>
+                        </form>
+                        <!-- PAGE CONTENT ENDS -->
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.page-content -->
+        </div>
+    </div><!-- /.main-content -->
+</div><!-- /.main-container -->
+
+<include file="Public/footerjs"/>
+
+</body>
+</html>

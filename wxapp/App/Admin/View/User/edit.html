@@ -1,0 +1,174 @@
+<include file="Public/head"/>
+<body class="no-skin">
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('main-container', 'fixed')
+        } catch (e) {
+        }
+    </script>
+
+    <include file="Public/sidebar"/>
+    <div class="main-content">
+        <div class="main-content-inner">
+            <!-- #section:basics/content.breadcrumbs -->
+            <include file="Public/breadcrumbs"/>
+
+            <!-- /section:basics/content.breadcrumbs -->
+            <div class="page-content">
+                <include file="Public/set"/>
+
+                <!-- /section:settings.box -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- PAGE CONTENT BEGINS -->
+                        <form class="form-horizontal" role="form" action="/User/update" method="post">
+
+
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right" for="form-field-4"> 微信头像 </label>
+                                <div class="col-sm-9">
+                                    <div class="col-xs-10 col-sm-5"><img src="{$member['headimgurl']}" style="width: 60px;" /></div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right" for="form-field-1"> 微信昵称 </label>
+                                <div class="col-sm-9">
+                                    <input type="text" disabled="disabled" class="rcol-xs-10 col-sm-5" value="{$member['nickname']}" readonly>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right" for="form-field-1"> 真实姓名 </label>
+                                <div class="col-sm-9">
+                                    <input type="text" disabled="disabled" class="rcol-xs-10 col-sm-5" value="{$member['member_name']}" readonly>
+                                </div>
+                            </div>
+
+                            <div class="space-4"></div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right" for="form-field-2"> 手机号 </label>
+                                <div class="col-sm-9">
+                                    <input type="text"  placeholder="" class="col-xs-10 col-sm-5" value="{$member['member_phone']}" readonly>
+                                </div>
+                            </div>
+
+
+                            <div class="space-4"></div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right" for="form-field-2"> 注册时间 </label>
+                                <div class="col-sm-9">
+                                    <input type="text" placeholder="" class="col-xs-10 col-sm-5" value="{$member['register_time']}" readonly>
+
+                                </div>
+                            </div>
+
+
+                            <div class="space-4"></div>
+
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right" for="form-field-4"> 性别 </label>
+                                <div class="col-sm-9">
+                                    <select id="sex"  class="multiselect" disabled >
+                                        <option <if condition="$member['sex'] eq 0">selected</if>>保密</option>
+                                        <option <if condition="$member['sex'] eq 1">selected</if>>男</option>
+                                        <option <if condition="$member['sex'] eq 2">selected</if>>女</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="space-4"></div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right" for="form-field-2"> 代还额度 </label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="credit"  placeholder="" class="col-xs-10 col-sm-5" value="{$credit['credit']}" >
+
+                                </div>
+                            </div>
+
+
+                            <div class="space-4"></div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right" for="form-field-2"> 3期代还费率 </label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="stage3_rate"  placeholder="" class="col-xs-10 col-sm-5" value="{$credit['stage3_rate']}">
+
+                                </div>
+                            </div>
+
+                            <div class="space-4"></div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right" for="form-field-2"> 6期代还费率 </label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="stage6_rate"  placeholder="" class="col-xs-10 col-sm-5" value="{$credit['stage6_rate']}" >
+
+                                </div>
+                            </div>
+
+                            <div class="space-4"></div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right" for="form-field-2"> 12期代还费率 </label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="stage12_rate"  placeholder="" class="col-xs-10 col-sm-5" value="{$credit['stage12_rate']}">
+
+                                </div>
+                            </div>
+
+                            <div class="space-4"></div>
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label no-padding-right" for="form-field-2"> 24期代还费率 </label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="stage24_rate"  placeholder="" class="col-xs-10 col-sm-5" value="{$credit['stage24_rate']}">
+
+                                </div>
+                            </div>
+
+
+                            <input type="hidden" value="{$member['member_id']}" name="id" />
+                            <div class="space-4"></div>
+
+                            <div class="col-md-offset-2 col-md-9">
+                                <button class="btn btn-info" type="submit">
+                                    <i class="icon-ok bigger-110"></i>
+                                    修改
+                                </button>
+
+                                &nbsp; &nbsp; &nbsp;
+                                <button class="btn" type="reset">
+                                    <i class="icon-undo bigger-110"></i>
+                                    返回
+                                </button>
+                            </div>
+                        </form>
+                        <!-- PAGE CONTENT ENDS -->
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.page-content -->
+        </div>
+    </div><!-- /.main-content -->
+    <include file="Public/footer"/>
+
+</div><!-- /.main-container -->
+
+<include file="Public/footerjs"/>
+<!-- inline scripts related to this page -->
+<script src="__PUBLIC__/qwadmin/js/date-time/bootstrap-datepicker.js"></script>
+<script type="text/javascript">
+    jQuery(function ($) {
+        $('#birthday').datepicker({
+            format: 'yyyy-mm-dd',
+            weekStart: 1,
+            autoclose: true,
+            todayBtn: 'linked',
+            language: 'cn'
+        });
+    });
+
+</script>
+</body>
+</html>
