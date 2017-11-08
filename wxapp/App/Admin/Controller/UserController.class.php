@@ -143,4 +143,20 @@ class UserController extends ComController
         $this->assign('data', $info);
         $this->display();
     }
+    //用户列表
+    public function userlist(){
+        $user = M('user');
+        $list = $user->select();
+        foreach($list as $key=>$val){
+            $list[$key]['create_time'] = date('Y-m-d h:i:s',$val['create_time']);
+        }
+        if (!empty($list)) {
+            $data['list'] = $list;
+            $data['code'] = 200;
+        }else{
+            $data['list'] = '';
+            $data['code'] = 400;
+        }
+        $this->ajaxReturn($data);
+    }
 }

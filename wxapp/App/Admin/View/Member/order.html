@@ -2,7 +2,7 @@
 <body class="no-skin">
 <div class="main-container" id="main-container">
     <script type="text/javascript">
-        
+
         try {
             ace.settings.check('main-container', 'fixed')
         } catch (e) {
@@ -143,7 +143,7 @@
             //提交数据的类型 POST GET
             type:"post",
             //提交的网址
-            url:"{:U('userlist')}",
+            url:"{:U('orderList')}",
             data:{date:date},
             //提交的数据
             //返回数据格式
@@ -156,21 +156,25 @@
                 $("#user_info_data_table_tbody").html('');
                 $("#user_info_data_table_thead").html('');
                 var title = '';
-                title += '<tr><th>用户ID</th><th>昵称</th><th>手机号</th><th>注册时间</th><th>操作</th></tr>'
+                title += '<tr><th>消费时间</th><th>手机号</th><th>订单号码</th><th>消费项目</th><th>支付金额</th><th>贴牌商</th></tr>'
                 if(data.code == 200)
                 {
+
+
                     var html = '';
+                    var agent_name
                     for (var i = 0; i < data.list.length; i++) {;
-                        html += '<tr><td>'+data.list[i]['id']+'</td>'
-                                + '<td>'+data.list[i]['name']+'</td>'
+                        html += '<tr><td>'+data.list[i]['create_time']+'</td>'
                                 + '<td>'+data.list[i]['phone']+'</td>'
-                                + '<td>'+data.list[i]['create_time']+'</td>'
-                                + '<td>'+data.list[i]['create_time']+'</td></tr>'
+                                + '<td>'+data.list[i]['tradeno']+'</td>'
+                                + '<td>'+data.list[i]['subject']+'</td>'
+                                + '<td>'+data.list[i]['price']+'</td>'
+                                + '<td>'+data.list[i]['app_name']+'</td></tr>'
                     }
                     $("#user_info_data_table_thead").html(title);
                     $("#user_info_data_table_tbody").html(html);
                     //配置Datatable
-                    DatatableConfig('user_info',3);
+                    DatatableConfig('user_info',0);
 
                 }
             }   ,

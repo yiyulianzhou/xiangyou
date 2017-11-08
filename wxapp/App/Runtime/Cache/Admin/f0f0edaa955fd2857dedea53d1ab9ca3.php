@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
 <html>
 
 <head>
@@ -24,12 +24,12 @@
         <div>
             <div>
 
-                <h1 class="logo-name"><img width="120px" src="__PUBLIC__/admin/logo.png"></h1>
+                <h1 class="logo-name"><img width="120px" src="/Public/admin/logo.png"></h1>
 
             </div>
             <h3>翔游后台管理系统</h3>
 
-            <form class="m-t" role="form" action="{:U('login/login')}" method="POST" >
+            <form class="m-t" role="form" action="<?php echo U('login/login');?>" method="POST" >
                 <div class="form-group">
                     <input type="text" name="name" class="form-control" placeholder="用户名" required="">
                 </div>

@@ -21,10 +21,10 @@
     </script>
     <![endif]-->
 
-    <link href="/Public/css/bootstrap.min.css?v=3.4.0" rel="stylesheet">
-    <link href="/Public/css/font-awesome.min.css?v=4.3.0" rel="stylesheet">
-    <link href="/Public/css/animate.min.css" rel="stylesheet">
-    <link href="/Public/css/style.min.css?v=3.0.0" rel="stylesheet">
+    <link href="__PUBLIC__/css/bootstrap.min.css?v=3.4.0" rel="stylesheet">
+    <link href="__PUBLIC__/css/font-awesome.min.css?v=4.3.0" rel="stylesheet">
+    <link href="__PUBLIC__/css/animate.min.css" rel="stylesheet">
+    <link href="__PUBLIC__/css/style.min.css?v=3.0.0" rel="stylesheet">
 </head>
 <body class="fixed-sidebar full-height-layout gray-bg">
     <div id="wrapper">
@@ -36,7 +36,7 @@
                 <ul class="nav" id="side-menu">
                     <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <span><img alt="image" width="60px" class="img-circle" src="{$user['headimgurl']}" /></span>
+                            <span><img alt="image" width="150" height="70" class="img-circle" src="__PUBLIC__/admin/logo.jpg" /></span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
                                 <span class="block m-t-xs"><strong class="font-bold">{$user['name']}</strong></span>
@@ -49,7 +49,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="logo-element">游
+                        <div class="logo-element">翔游
                         </div>
                     </li>
             <!--遍历菜单开始-->
@@ -131,7 +131,7 @@
                         <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
                     </div>
                     <div class="navbar-header text-center col-md-3 col-md-offset-2">
-                        <h2 class="text-default">翔游后台系统</h2>
+                        <h2 class="text-default">翔游后台管理系统</h2>
                     </div>
 
                    
@@ -386,7 +386,6 @@
         $(".J_menuItem[data-index='4']").click();
         $('.layui-layer-btn1').click();
     }
- }
     </script>
 </body>
 

@@ -39,8 +39,7 @@ class ComController extends BaseController
             exit(0);
         }
 
-        $this->user=M("admins")->where(array("id"=>$_SESSION["id"]))->find();
-
+        $this->user=M("admins")->where(array("id"=>$_SESSION["uid"]))->find();
         if(!empty($this->user))
         {
             
@@ -48,19 +47,21 @@ class ComController extends BaseController
             $m = M();
             $prefix = C('DB_PREFIX');
             $uid = $this->user['id'];
-            $userinfo = $m->query("SELECT * FROM {$prefix}auth_group g left join {$prefix}auth_group_access a on g.id=a.group_id where a.uid=$uid");
+            $userinfo = $m->query("SELECT * FROM {$prefix}admin_auth_group g left join {$prefix}admin_auth_group_access a on g.id=a.group_id where a.uid=$uid");
             $Auth = new Auth();
             $allow_controller_name = array('Upload');//放行控制器名称
             $allow_action_name = array();//放行函数名称
-            if (empty($userinfo[0]['group_id'] ) && !$Auth->check(CONTROLLER_NAME . '/' . ACTION_NAME,
-                    $uid) && !in_array(CONTROLLER_NAME, $allow_controller_name) && !in_array(ACTION_NAME,
-                    $allow_action_name)
-            ) {
-                $this->error('没有权限访问本页面!');
-            }
+
+            // if (empty($userinfo[0]['group_id'] ) && !$Auth->check(CONTROLLER_NAME . '/' . ACTION_NAME,
+            //         $uid) && !in_array(CONTROLLER_NAME, $allow_controller_name) && !in_array(ACTION_NAME,
+            //         $allow_action_name)
+            // ) {
+            //     $this->error('没有权限访问本页面!');
+            // }
             //权限验证
+            
             $current_action_name = ACTION_NAME == 'edit' ? "index" : ACTION_NAME;
-            $current = $m->query("SELECT s.id,s.title,s.name,s.tips,s.pid,p.pid as ppid,p.title as ptitle FROM {$prefix}auth_rule s left join {$prefix}auth_rule p on p.id=s.pid where s.name='" . CONTROLLER_NAME . '/' . $current_action_name . "'");
+            $current = $m->query("SELECT s.id,s.title,s.name,s.tips,s.pid,p.pid as ppid,p.title as ptitle FROM {$prefix}admin_auth_rule s left join {$prefix}admin_auth_rule p on p.id=s.pid where s.name='" . CONTROLLER_NAME . '/' . $current_action_name . "'");
             $this->assign('current', $current[0]);
 
             $this->Vx_status=M("admin_setting")->getField('k,v',true);
@@ -68,14 +69,14 @@ class ComController extends BaseController
 
             if ($userinfo[0]['group_id'] != 1) {
 
-                $menu_where = "AND id in ($menu_access_id) AND id !=135";
+                $menu_where = "AND id in ($menu_access_id) ";
 
             } else {
 
                 $menu_where = '';
             }
-            $menu = M('auth_rule')->field('id,title,pid,name,icon')->where("islink=1 $menu_where ")->order('o ASC')->select();
-            //var_dump(M('admin_auth_rule')->getLastsql());die;
+            $menu = M('admin_auth_rule')->field('id,title,pid,name,icon')->where("islink=1 $menu_where ")->order('o ASC')->select();
+            //var_dump(M('auth_rule')->getLastsql());die;
             $menu = $this->getMenu($menu);
             $this->assign('menu', $menu);
             //权限验证
@@ -86,7 +87,7 @@ class ComController extends BaseController
             $this->Vx_status=M("admin_setting")->getField('k,v',true);
             $menu_access_id = $userinfo[0]['rules'];
 
-            $menu = M('auth_rule')->field('id,title,pid,name,icon')->where("islink=1 $menu_where ")->order('o ASC')->select();
+            $menu = M('admin_auth_rule')->field('id,title,pid,name,icon')->where("islink=1 $menu_where ")->order('o ASC')->select();
             $menu = $this->getMenu($menu);
             $this->assign('menu', $menu);
         }
@@ -134,7 +135,7 @@ class ComController extends BaseController
 
         
         if ($uid) {
-            $user = M('auth_group_access')->where(array('uid' => $uid))->find();
+            $user = M('admin_auth_group_access')->where(array('uid' => $uid))->find();
             if (!empty($user)) {
                 $flag = true;
                 $this->user = $user;

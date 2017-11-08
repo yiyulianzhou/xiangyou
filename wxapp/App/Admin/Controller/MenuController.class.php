@@ -36,7 +36,7 @@ class MenuController extends ComController
 
     public function del()
     {
-        $ids = isset($_REQUEST['ids']) ? $_REQUEST['ids'] : false;
+        $ids = isset($_REQUEST['id']) ? $_REQUEST['id'] : false;
         if (!$ids) {
             $this->error('请勾选删除菜单！');
         }
@@ -54,7 +54,7 @@ class MenuController extends ComController
         $map['id'] = array('in', $ids);
         if (M('admin_auth_rule')->where($map)->delete()) {
 
-            addlog('删除菜单ID：' . $ids);
+            //addlog('删除菜单ID：' . $ids);
             $this->success('恭喜，菜单删除成功！');
         } else {
             $this->error('参数错误！');

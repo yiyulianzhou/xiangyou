@@ -52,8 +52,7 @@
                                                 </if>
                                             </td>
                                             <td>{$val['o']}</td>
-                                            <td class="center"><a href="/menu/edit?id={$val['id']}">修改</a>&nbsp;<a
-                                                    class="del" href="javascript:;" val="/menu/del?id={$val['id']}"
+                                            <td class="center"><a href="/menu/edit?id={$val['id']}">修改</a>&nbsp;<a class="del" href="javascript:;" val="/menu/del?id={$val['id']}"
                                                     title="删除">删除</a></td>
                                         </tr>
                                         <notempty name="val.children">
@@ -108,9 +107,6 @@
                                     </tbody>
                                 </table>
                             </form>
-                            <div class="cf">
-                                <input id="submit" class="btn btn-info" type="button" value="删除">
-                            </div>
                             {$page}
                         </div>
                         <!-- PAGE CONTENT ENDS -->
@@ -119,8 +115,6 @@
             </div><!-- /.page-content -->
         </div>
     </div><!-- /.main-content -->
-    <include file="Public/footer"/>
-
 </div><!-- /.main-container -->
 
 <include file="Public/footerjs"/>

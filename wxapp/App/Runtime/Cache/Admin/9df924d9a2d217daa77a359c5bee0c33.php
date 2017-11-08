@@ -36,7 +36,7 @@
                 <ul class="nav" id="side-menu">
                     <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <span><img alt="image" width="60px" class="img-circle" src="<?php echo ($user['headimgurl']); ?>" /></span>
+                            <span><img alt="image" width="150" height="70" class="img-circle" src="/Public/admin/logo.jpg" /></span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
                                 <span class="block m-t-xs"><strong class="font-bold"><?php echo ($user['name']); ?></strong></span>
@@ -49,7 +49,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="logo-element">游
+                        <div class="logo-element">翔游
                         </div>
                     </li>
             <!--遍历菜单开始-->
@@ -112,7 +112,7 @@
                         <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
                     </div>
                     <div class="navbar-header text-center col-md-3 col-md-offset-2">
-                        <h2 class="text-default">翔游后台系统</h2>
+                        <h2 class="text-default">翔游后台管理系统</h2>
                     </div>
 
                    
@@ -365,7 +365,6 @@
         $(".J_menuItem[data-index='4']").click();
         $('.layui-layer-btn1').click();
     }
- }
     </script>
 </body>
 
