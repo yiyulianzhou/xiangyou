@@ -282,48 +282,29 @@
                 $("#user_info_data_table_tbody").html('');
                 $("#user_info_data_table_thead").html('');
                 var title = '';
-<<<<<<< HEAD
                 title += '<tr><th>注册时间</th><th>用户昵称</th><th>手机号</th><th>会员等级</th><th>操作</th></tr>'
-=======
-                title += '<tr><th>注册时间</th><th>昵称</th><th>手机号</th><th>会员等级</th><th>操作</th></tr>'
->>>>>>> 08c2ca8a88a760f7badf3882f9f19286ff31008f
+
                 if(data.code == 200)
                 {
                     var html = '';
                     var level;
-<<<<<<< HEAD
-                    for (var i = 0; i < data.list.length; i++) {;
-                        if(data.list[i]['level'] == 1) {
-                            level = '会员'
-                        }else{
-                            level = '普通用户'
-=======
-
                     for (var i = 0; i < data.list.length; i++) {;
                         if (data.list[i]['level'] == 0) {
                             level = '普通会员';
                         }else{
                             level = '高级会员';
->>>>>>> 08c2ca8a88a760f7badf3882f9f19286ff31008f
                         }
                         html += '<tr><td>'+data.list[i]['create_time']+'</td>'
                                 + '<td>'+data.list[i]['name']+'</td>'
                                 + '<td>'+data.list[i]['phone']+'</td>'
                                 + '<td>'+level+'</td>'
-<<<<<<< HEAD
                                 + '<td><a href="/User/detail/id/'+data.list[i]['id']+'">查看详情</a>&nbsp;|&nbsp;<a href="/User/edit/id/'+data.list[i]['id']+'">编辑</a></td></tr>'
-=======
-                                + '<td><a href="/User/edit/id/'+data.list[i]['id']+'">编辑</a>&nbsp;|&nbsp;<a href="/User/detail/id/'+data.list[i]['id']+'">查看详情</a></td></tr>'
->>>>>>> 08c2ca8a88a760f7badf3882f9f19286ff31008f
                     }
                     $("#user_info_data_table_thead").html(title);
                     $("#user_info_data_table_tbody").html(html);
                     //配置Datatable
-<<<<<<< HEAD
+
                     DatatableConfig('user_info',0);
-=======
-                    DatatableConfig('user_info',3);
->>>>>>> 08c2ca8a88a760f7badf3882f9f19286ff31008f
 
                 }
             }   ,

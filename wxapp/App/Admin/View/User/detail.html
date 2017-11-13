@@ -23,13 +23,6 @@
                                 <div class="col-sm-9">
                                     <input type="text" name='user'
                                     class="rcol-xs-10 col-sm-5" value="{$list.name}">
-                                    <span class="help-inline col-xs-12 col-sm-7">
-                                            <if condition="$member['uid'] eq 1"><span class="middle">无法修改</span></if>
-<<<<<<< HEAD
-                                    </span>
-=======
-                                            </span>
->>>>>>> 08c2ca8a88a760f7badf3882f9f19286ff31008f
                                 </div>
                             </div>
                             <div class="space-4"></div>
@@ -178,11 +171,7 @@
                                 <label class="col-sm-1 control-label no-padding-right" for="id-date-picker-1">是否独居</label>
                                 <div class="col-xs-9 col-sm-9">
                                     <div class="input-group col-xs-5">
-<<<<<<< HEAD
 
-                                        <input class="form-control" name="urgent_name" value="{$list['live_alone']}"
-                                        type="text"/>
-=======
                                         <select id="sex" name="sex" class="multiselect">
                                         <option value="0"
                                         <if condition="$list['live_alone'] eq 0">selected="selected"</if>
@@ -191,8 +180,6 @@
                                         <if condition="$list['live_alone'] eq 1">selected="selected"</if>
                                         >是</option>
                                     </select>
->>>>>>> 08c2ca8a88a760f7badf3882f9f19286ff31008f
-
                                     </div>
                                 </div>
                             </div>
@@ -241,21 +228,9 @@
                             <div class="space-4"></div>
 
                             <div class="col-md-offset-2 col-md-9">
-<<<<<<< HEAD
-                                <button class="btn btn-info" type="submit">
-                                    <i class="icon-ok bigger-110"></i>
-                                    提交
-                                </button>
-
-                                &nbsp; &nbsp; &nbsp;
-                                <button class="btn" type="reset">
-                                    <i class="icon-undo bigger-110"></i>
-                                    重置
-=======
                                 <button class="btn" type="reset" onclick="history.go(-1)">
                                     <i class="icon-undo bigger-110"></i>
                                     返回
->>>>>>> 08c2ca8a88a760f7badf3882f9f19286ff31008f
                                 </button>
                             </div>
                         </form>
