@@ -85,6 +85,7 @@
         <div class="main-content-inner">
             <!-- /section:basics/content.breadcrumbs -->
             <div class="page-content">
+<<<<<<< HEAD
                     <!-- #section:settings.box -->
     <?php if($current["tips"] != ''): ?><div class="alert alert-block alert-success">
             <button type="button" class="close" data-dismiss="alert">
@@ -93,6 +94,8 @@
             <!--i class="ace-icon fa fa-check green"></i-->
             <?php echo ($current["tips"]); ?>
         </div><?php endif; ?>
+=======
+>>>>>>> 08c2ca8a88a760f7badf3882f9f19286ff31008f
 
                 <!-- /section:settings.box -->
                 <div class="row">
@@ -259,6 +262,7 @@
             </div><!-- /.page-content -->
         </div>
     </div><!-- /.main-content -->
+<<<<<<< HEAD
         <div class="footer">
         <div class="footer-inner">
             <!-- #section:basics/footer -->
@@ -276,6 +280,8 @@
         <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
     </a>
 
+=======
+>>>>>>> 08c2ca8a88a760f7badf3882f9f19286ff31008f
 </div><!-- /.main-container -->
 
 <!-- basic scripts -->

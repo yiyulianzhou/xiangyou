@@ -106,7 +106,11 @@
                                     class="rcol-xs-10 col-sm-5" value="<?php echo ($list["name"]); ?>">
                                     <span class="help-inline col-xs-12 col-sm-7">
                                             <?php if($member['uid'] == 1): ?><span class="middle">无法修改</span><?php endif; ?>
+<<<<<<< HEAD
                                     </span>
+=======
+                                            </span>
+>>>>>>> 08c2ca8a88a760f7badf3882f9f19286ff31008f
                                 </div>
                             </div>
                             <div class="space-4"></div>
@@ -258,6 +262,17 @@
 
                                         <input class="form-control" name="urgent_name" value="<?php echo ($list['live_alone']); ?>"
                                         type="text"/>
+<<<<<<< HEAD
+=======
+                                        <select id="sex" name="sex" class="multiselect">
+                                        <option value="0"
+                                        <?php if($list['live_alone'] == 0): ?>selected="selected"<?php endif; ?>
+                                        >否</option>
+                                        <option value="1"
+                                        <?php if($list['live_alone'] == 1): ?>selected="selected"<?php endif; ?>
+                                        >是</option>
+                                    </select>
+>>>>>>> 08c2ca8a88a760f7badf3882f9f19286ff31008f
 
                                     </div>
                                 </div>
@@ -307,6 +322,7 @@
                             <div class="space-4"></div>
 
                             <div class="col-md-offset-2 col-md-9">
+<<<<<<< HEAD
                                 <button class="btn btn-info" type="submit">
                                     <i class="icon-ok bigger-110"></i>
                                     提交
@@ -316,6 +332,11 @@
                                 <button class="btn" type="reset">
                                     <i class="icon-undo bigger-110"></i>
                                     重置
+=======
+                                <button class="btn" type="reset" onclick="history.go(-1)">
+                                    <i class="icon-undo bigger-110"></i>
+                                    返回
+>>>>>>> 08c2ca8a88a760f7badf3882f9f19286ff31008f
                                 </button>
                             </div>
                         </form>

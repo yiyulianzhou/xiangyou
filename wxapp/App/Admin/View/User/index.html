@@ -157,15 +157,16 @@
                 $("#user_info_data_table_thead").html('');
                 var title = '';
                 title += '<tr><th>注册时间</th><th>用户昵称</th><th>手机号</th><th>会员等级</th><th>操作</th></tr>'
+
                 if(data.code == 200)
                 {
                     var html = '';
                     var level;
                     for (var i = 0; i < data.list.length; i++) {;
-                        if(data.list[i]['level'] == 1) {
-                            level = '会员'
+                        if (data.list[i]['level'] == 0) {
+                            level = '普通会员';
                         }else{
-                            level = '普通用户'
+                            level = '高级会员';
                         }
                         html += '<tr><td>'+data.list[i]['create_time']+'</td>'
                                 + '<td>'+data.list[i]['name']+'</td>'
@@ -176,6 +177,7 @@
                     $("#user_info_data_table_thead").html(title);
                     $("#user_info_data_table_tbody").html(html);
                     //配置Datatable
+
                     DatatableConfig('user_info',0);
 
                 }
