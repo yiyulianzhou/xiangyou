@@ -156,21 +156,27 @@
                 $("#user_info_data_table_tbody").html('');
                 $("#user_info_data_table_thead").html('');
                 var title = '';
-                title += '<tr><th>用户ID</th><th>昵称</th><th>手机号</th><th>注册时间</th><th>操作</th></tr>'
+                title += '<tr><th>注册时间</th><th>用户昵称</th><th>手机号</th><th>会员等级</th><th>操作</th></tr>'
                 if(data.code == 200)
                 {
                     var html = '';
+                    var level;
                     for (var i = 0; i < data.list.length; i++) {;
-                        html += '<tr><td>'+data.list[i]['id']+'</td>'
+                        if(data.list[i]['level'] == 1) {
+                            level = '会员'
+                        }else{
+                            level = '普通用户'
+                        }
+                        html += '<tr><td>'+data.list[i]['create_time']+'</td>'
                                 + '<td>'+data.list[i]['name']+'</td>'
                                 + '<td>'+data.list[i]['phone']+'</td>'
-                                + '<td>'+data.list[i]['create_time']+'</td>'
-                                + '<td>'+data.list[i]['create_time']+'</td></tr>'
+                                + '<td>'+level+'</td>'
+                                + '<td><a href="/User/detail/id/'+data.list[i]['id']+'">查看详情</a>&nbsp;|&nbsp;<a href="/User/edit/id/'+data.list[i]['id']+'">编辑</a></td></tr>'
                     }
                     $("#user_info_data_table_thead").html(title);
                     $("#user_info_data_table_tbody").html(html);
                     //配置Datatable
-                    DatatableConfig('user_info',3);
+                    DatatableConfig('user_info',0);
 
                 }
             }   ,

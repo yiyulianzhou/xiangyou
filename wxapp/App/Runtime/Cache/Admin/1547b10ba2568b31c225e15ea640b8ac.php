@@ -76,7 +76,6 @@
 <body class="no-skin">
 <div class="main-container" id="main-container">
     <script type="text/javascript">
-        
         try {
             ace.settings.check('main-container', 'fixed')
         } catch (e) {
@@ -84,6 +83,8 @@
     </script>
     <div class="main-content">
         <div class="main-content-inner">
+            <!-- #section:basics/content.breadcrumbs -->
+            
 
             <!-- /section:basics/content.breadcrumbs -->
             <div class="page-content">
@@ -95,46 +96,51 @@
             <!--i class="ace-icon fa fa-check green"></i-->
             <?php echo ($current["tips"]); ?>
         </div><?php endif; ?>
-                <style>
-                    .grouptd {
-                        position: relative;
-                    }
 
-                    .group {
-                        display: inline-block;
-                        width: 100%;
-                    }
-
-                    .groupselect {
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        width: 100%;
-                        height: 100%;
-                        border: 0;
-                    }
-                </style>
                 <!-- /section:settings.box -->
                 <div class="row">
-                    <input type="hidden" name="beginTime" id="beginTime" value="" />
-                    <input type="hidden" name="endTime" id="endTime" value="" />
-                    <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered table-hover"
-                           id="user_info">
-                        <thead id="user_info_data_table_thead">
-                        </thead>
-                        <tbody id="user_info_data_table_tbody">
+                    <div class="col-xs-12">
+                        <!-- PAGE CONTENT BEGINS -->
+                        <form id="export-form" method="post" action="<?php echo U('del');?>">
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th class="center"><input class="check-all" type="checkbox" value=""></th>
+                                    <th>用户组</th>
+                                    <th>状态</th>
+                                    <th class="center">操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$val): $mod = ($i % 2 );++$i;?><tr>
+                                        <td class="center">
+                                            <?php if($val['id'] != 1): ?><input class="ids" type="checkbox"
+                                                                                    name="ids[]" value="<?php echo ($val['id']); ?>">
+                                                <?php else: ?>
+                                                <span title="系统用户组，禁止删除">--</span><?php endif; ?>
 
-                        </tbody>
-
-                        </thead>
-                    </table>
-
-                    <!-- Modal -->
+                                        </td>
+                                        <td><?php echo ($val['title']); ?></td>
+                                        <td>
+                                            <?php if($val['id'] == 1 ): ?>启用
+                                            <?php elseif($val['status'] == 1): ?><a href="<?php echo U('status',array('id'=>$val['id']));?>" title="点击禁用">启用</a>
+                                                <?php else: ?>
+                                                <a href="<?php echo U('status',array('id'=>$val['id']));?>" title="点击启用">禁用</a><?php endif; ?>
+                                        </td>
+                                        <td class="center"><a href="<?php echo U('edit',array('id'=>$val['id']));?>">修改</a></td>
+                                    </tr><?php endforeach; endif; else: echo "" ;endif; ?>
+                                </tbody>
+                            </table>
+                            <div class="cf">
+                                <input class="btn btn-info" type="submit" value="删除">
+                            </div>
+                        </form>
+                        <!-- PAGE CONTENT ENDS -->
+                    </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.page-content -->
         </div>
     </div><!-- /.main-content -->
-
 </div><!-- /.main-container -->
 
 <!-- basic scripts -->
@@ -185,31 +191,11 @@
 <script src="/Public/qwadmin/js/jquery-ui.js"></script>
 <!-- inline scripts related to this page -->
 <script type="text/javascript">
-    var table;
-    var start_date;
-    var start_end ;
-    var where;
-    $(function () {
-        GetUserInfo('all');
-        $(".group").click(function () {
-            $(this).addClass('hide');
-            $(this).parent().find(".groupselect").removeClass('hide');
-        })
-        $(".groupselect").on("change", function () {
-            var ob = $(this);
-            var gid = ob.val();
-            var uid = ob.parent().find('.group').attr('val');
-            $.get("<?php echo U('update');?>?ajax=yes&uid=" + uid + "&gid=" + gid, function (data) {
-                var text = ob.find("option:selected").text();
-                ob.parent().find(".group").removeClass('hide').html(text);
-                ob.addClass('hide');
-            });
-        })
-
+    (function ($) {
         $(".check-all").click(function () {
-            $(".uids").prop("checked", this.checked);
+            $(".ids").prop("checked", this.checked);
         });
-        $(".uids").click(function () {
+        $(".ids").click(function () {
             var option = $(".ids");
             option.each(function (i) {
                 if (!this.checked) {
@@ -220,133 +206,7 @@
                 }
             });
         });
-        $("#submit").click(function () {
-            bootbox.confirm({
-                title: "系统提示",
-                message: "是否要删除所选用户？",
-                callback: function (result) {
-                    if (result) {
-                        $("#form").submit();
-                    }
-                },
-                buttons: {
-                    "cancel": {"label": "取消"},
-                    "confirm": {
-                        "label": "确定",
-                        "className": "btn-danger"
-                    }
-                }
-            });
-        });
-        $(".del").click(function () {
-            var url = $(this).attr('val');
-            bootbox.confirm({
-                title: "系统提示",
-                message: "是否要删除该用户?",
-                callback: function (result) {
-                    if (result) {
-                        window.location.href = url;
-                    }
-                },
-                buttons: {
-                    "cancel": {"label": "取消"},
-                    "confirm": {
-                        "label": "确定",
-                        "className": "btn-danger"
-                    }
-                }
-            });
-        });
-    })
-
-    function GetUserInfo(date){
-        if ($('#user_info').hasClass('dataTable')) {
-            table = $('#user_info').dataTable();
-            table.fnClearTable(); //清空一下table
-            table.fnDestroy(); //还原初始化了的datatable
-        }
-        $.ajax({
-            //提交数据的类型 POST GET
-            type:"post",
-            //提交的网址
-            url:"<?php echo U('userlist');?>",
-            data:{date:date},
-            //提交的数据
-            //返回数据格式
-            datatype: "json",//"xml", "html", "script", "json", "jsonp", "text".
-            //在请求之前调用的函数
-            beforeSend:function(){$("#msg").html("logining");},
-            //成功返回之后调用的函数
-            success:function(data){
-                //初始化内容
-                $("#user_info_data_table_tbody").html('');
-                $("#user_info_data_table_thead").html('');
-                var title = '';
-                title += '<tr><th>注册时间</th><th>用户昵称</th><th>手机号</th><th>会员等级</th><th>操作</th></tr>'
-                if(data.code == 200)
-                {
-                    var html = '';
-                    var level;
-                    for (var i = 0; i < data.list.length; i++) {;
-                        if(data.list[i]['level'] == 1) {
-                            level = '会员'
-                        }else{
-                            level = '普通用户'
-                        }
-                        html += '<tr><td>'+data.list[i]['create_time']+'</td>'
-                                + '<td>'+data.list[i]['name']+'</td>'
-                                + '<td>'+data.list[i]['phone']+'</td>'
-                                + '<td>'+level+'</td>'
-                                + '<td><a href="/User/detail/id/'+data.list[i]['id']+'">查看详情</a>&nbsp;|&nbsp;<a href="/User/edit/id/'+data.list[i]['id']+'">编辑</a></td></tr>'
-                    }
-                    $("#user_info_data_table_thead").html(title);
-                    $("#user_info_data_table_tbody").html(html);
-                    //配置Datatable
-                    DatatableConfig('user_info',0);
-
-                }
-            }   ,
-            //调用出错执行的函数
-            error: function(){
-                //请求出错处理
-                alert('加载页面图表数据出错');
-            }
-        });
-    }
-    function initComplete(data) {
-        var dataPlugin =
-                '<div id="reportrange" class="pull-left dateRange" style="width:400px;margin-left: 10px"> '+
-                '日期：<i class="glyphicon glyphicon-calendar fa fa-calendar"></i> '+
-                '<span id="searchDateRange"></span>  '+
-                '<b class="caret"></b></div> ';
-        $('#mytoolbox').append(dataPlugin);
-        //时间插件
-
-        $('#reportrange span').html('请选择时间');
-        //配置DateRangePicker
-        DaterangepickerConfig('reportrange');
-
-        $(".daterangepicker").find("li").each(function (){
-            if($(this).hasClass("active")){
-                $(this).removeClass("active");
-            }
-            if(dateOption==$(this).html()){
-                $(this).addClass("active");
-            }
-        });
-
-        //选择时间后触发重新加载的方法
-        $("#reportrange").on('apply.daterangepicker',function(){
-            start_date = $('#beginTime').val()
-            start_end = $('#endTime').val();
-            where = start_date + ','+start_end;
-            GetUserInfo(where);
-
-        });
-    }
-
-
+    })(jQuery);
 </script>
-
 </body>
 </html>

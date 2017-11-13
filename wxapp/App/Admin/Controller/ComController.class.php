@@ -40,6 +40,7 @@ class ComController extends BaseController
         }
 
         $this->user=M("admins")->where(array("id"=>$_SESSION["uid"]))->find();
+
         if(!empty($this->user))
         {
             
@@ -47,17 +48,18 @@ class ComController extends BaseController
             $m = M();
             $prefix = C('DB_PREFIX');
             $uid = $this->user['id'];
+
             $userinfo = $m->query("SELECT * FROM {$prefix}admin_auth_group g left join {$prefix}admin_auth_group_access a on g.id=a.group_id where a.uid=$uid");
             $Auth = new Auth();
             $allow_controller_name = array('Upload');//放行控制器名称
             $allow_action_name = array();//放行函数名称
 
-            // if (empty($userinfo[0]['group_id'] ) && !$Auth->check(CONTROLLER_NAME . '/' . ACTION_NAME,
-            //         $uid) && !in_array(CONTROLLER_NAME, $allow_controller_name) && !in_array(ACTION_NAME,
-            //         $allow_action_name)
-            // ) {
-            //     $this->error('没有权限访问本页面!');
-            // }
+            if (empty($userinfo[0]['group_id'] ) && !$Auth->check(CONTROLLER_NAME . '/' . ACTION_NAME,
+                    $uid) && !in_array(CONTROLLER_NAME, $allow_controller_name) && !in_array(ACTION_NAME,
+                    $allow_action_name)
+            ) {
+                $this->error('没有权限访问本页面!');
+            }
             //权限验证
             
             $current_action_name = ACTION_NAME == 'edit' ? "index" : ACTION_NAME;
@@ -128,9 +130,7 @@ class ComController extends BaseController
     {
         session_start();
         $flag = false;       
-
-       
-       
+ 
         $uid = session('uid');
 
         

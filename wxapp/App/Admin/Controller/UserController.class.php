@@ -159,4 +159,30 @@ class UserController extends ComController
         }
         $this->ajaxReturn($data);
     }
+    //会员列表
+    public function memberlist(){
+        $user = M('user');
+        $where = array('type'=>1);
+        $list = $user->where($where)->select();
+        foreach($list as $key=>$val){
+            $list[$key]['create_time'] = date('Y-m-d h:i:s',$val['create_time']);
+        }
+        if (!empty($list)) {
+            $data['list'] = $list;
+            $data['code'] = 200;
+        }else{
+            $data['list'] = '';
+            $data['code'] = 400;
+        }
+        $this->ajaxReturn($data);
+    }
+
+    //会员详情
+    public function detail(){
+        $id = I('get.id',0,'intval');
+        $where = array('uid'=>$id);
+        $list = M('userinfo')->where($where)->find();
+        $this->assign('list',$list);
+        $this->display();
+    }
 }
