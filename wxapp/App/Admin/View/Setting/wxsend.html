@@ -1,0 +1,109 @@
+<include file="Public/head"/>
+<body class="no-skin">
+<style>
+ .lbl::before {
+    content: "开启\a0\a0\a0\a0\a0\a0\a0\a0\a0关闭"!important;
+}
+</style>
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('main-container', 'fixed')
+        } catch (e) {
+        }
+    </script>
+    <div class="main-content">
+        <div class="main-content-inner">
+            <!-- /section:basics/content.breadcrumbs -->
+            <div class="page-content">
+                <include file="Public/set"/>
+
+                <!-- /section:settings.box -->
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- PAGE CONTENT BEGINS -->
+                        <form class="form-horizontal" id="form" role="form" method="post" action="/Setting/update">
+
+
+                            <div class="space-4"></div>
+                            <div class="form-group">
+                                <label class="col-sm-6 control-label no-padding-right" for="form-field-1">
+                                    微信推送接口开关 </label>
+
+                            </div>
+                            <volist name="vars" id="val">
+                                <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label no-padding-right" for="form-field-2"> {$val.name} </label>
+                                <div class="control-label no-padding-left col-sm-4">
+                                    <label>
+                                        <input name="{$val.k}" id="button_{$val.k}" <if condition="$val['v'] eq 1 ">checked="checked" </if>value="{$val.v}" class="ace ace-switch ace-switch-2" type="checkbox">
+                                        <span class="lbl" id="{$val.k}" data="{$val.v}"></span>
+                                    </label>
+                                </div>
+                                <!--span class="help-inline col-xs-12 col-sm-7">
+                                                <span class="middle"></span>
+                                        </span-->
+                                </div>
+                                <div class="space-4"></div>
+                            </volist>
+
+                        </form>
+                        <!-- PAGE CONTENT ENDS -->
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.page-content -->
+        </div>
+    </div><!-- /.main-content -->
+    
+    <include file="Public/footer"/>
+
+</div><!-- /.main-container -->
+
+<include file="Public/footerjs"/>
+
+<!-- inline scripts related to this page -->
+<script type="text/javascript">
+var apis=["pos_posapply","creadit_bankpass","credit_bonus","member_balancedraw","promote_submitamount","creadit_banknopass","promote_posnopass","promote_pospass","promote_posupdate","user_checkrecords","user_updatestatus_1","user_updatestatus_2","user_updatestatus_3","user_import_excel"];
+
+  $(".lbl").each(function(){
+    var key=$(this).attr("id"),value=$(this).attr("data");
+    $(this).on("click",function(){
+        $.ajax({
+            type:"post",
+            url:"{:U('Setting/wxsend')}",
+            data:{
+              key:key,
+              value:value
+            },
+            //提交的数据
+            //返回数据格式
+            datatype: "json",//"xml", "html", "script", "json", "jsonp", "text".
+            //成功返回之后调用的函数
+            success:function(data){
+                $("#button_"+key).val(data.status);
+                $("#"+key).attr("data",data.status);
+                if(data.status == 1)
+                {
+                    $("#button_"+key).attr("checked","checked");
+                }else{
+                    $("#button_"+key).attr("checked",false);
+                    
+                }
+                alert(data.msg);
+            }   ,
+            //调用出错执行的函数
+            error: function(){
+                //请求出错处理
+                alert("操作失败！");
+            }
+        });
+    });
+  });
+</script>
+<style>
+ .lbl::before {
+    content: "开启\a0\a0\a0\a0\a0\a0\a0\a0\a0关闭"!important;
+}
+</style>
+</body>
+</html>
